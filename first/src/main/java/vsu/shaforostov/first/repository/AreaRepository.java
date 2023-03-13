@@ -1,6 +1,8 @@
 package vsu.shaforostov.first.repository;
 
 import org.bson.types.ObjectId;
+
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import vsu.shaforostov.first.entity.Area;
 
 import java.util.List;

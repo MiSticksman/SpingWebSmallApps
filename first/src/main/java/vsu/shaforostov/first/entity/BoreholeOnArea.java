@@ -1,10 +1,8 @@
 package vsu.shaforostov.first.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
@@ -16,11 +14,17 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 @Document(collection = "borehole_on_area")
 public class BoreholeOnArea {
 
+    public BoreholeOnArea(@NonNull Area area, @NonNull Borehole borehole) {
+        this.area = area;
+        this.borehole = borehole;
+    }
+
     @MongoId
-    private Object id;
+    private ObjectId id;
 
+    @NonNull
     private Area area;
-
+    @NonNull
     private Borehole borehole;
 
 }

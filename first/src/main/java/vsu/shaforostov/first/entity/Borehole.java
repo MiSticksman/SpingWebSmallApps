@@ -1,12 +1,11 @@
 package vsu.shaforostov.first.entity;
 
-
-import lombok.AllArgsConstructor;
+import lombok. *;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -15,13 +14,22 @@ import lombok.Setter;
 @Document(collection = "borehole")
 public class Borehole {
 
-    @MongoId
-    private Object id;
+    public Borehole(@NonNull int number, @NonNull String type, @NonNull GeoJsonPoint location) {
+        this.number = number;
+        this.type = type;
+        this.location = location;
+    }
 
+    @MongoId
+    private ObjectId id;
+
+    @NonNull
     private int number;
 
+    @NonNull
     private String type;
 
-
+    @NonNull
+    private GeoJsonPoint location;
 
 }
