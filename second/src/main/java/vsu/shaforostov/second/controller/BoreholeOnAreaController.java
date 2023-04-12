@@ -3,10 +3,10 @@ package vsu.shaforostov.second.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import vsu.shaforostov.second.dto.BoreholeDTO;
-import vsu.shaforostov.second.dto.BoreholeOnAreaDTO;
+import vsu.shaforostov.second.dto.BoreholeOnAreaCreateDTO;
+import vsu.shaforostov.second.dto.BoreholeOnAreaReadDTO;
+import vsu.shaforostov.second.entity.BoreholeOnAreaId;
 import vsu.shaforostov.second.service.BoreholeOnAreaService;
-import vsu.shaforostov.second.service.BoreholeService;
 
 import java.util.List;
 
@@ -19,18 +19,18 @@ public class BoreholeOnAreaController {
 
 
     @GetMapping()
-    public List<BoreholeOnAreaDTO> getAllBoreholesOnArea() {
+    public List<BoreholeOnAreaReadDTO> getAllBoreholesOnArea() {
         return boreholeOnAreaService.findAll();
     }
 
 
-    @GetMapping("/{id}")
-    public BoreholeOnAreaDTO index(@PathVariable(name="id") Integer id) {
-        return boreholeOnAreaService.findById(id);
+    @GetMapping("/{area_id}/{borehole_id}")
+    public BoreholeOnAreaReadDTO index(@PathVariable(name="area_id") Integer areaId, @PathVariable(name="borehole_id") Integer boreholeId) {
+        return boreholeOnAreaService.findById(areaId, boreholeId);
     }
 
     @PostMapping(value="save")
-    public void saveBorehole(@RequestBody BoreholeOnAreaDTO boreholeOnArea) {
+    public void saveBorehole(@RequestBody BoreholeOnAreaCreateDTO boreholeOnArea) {
         boreholeOnAreaService.save(boreholeOnArea);
     }
 

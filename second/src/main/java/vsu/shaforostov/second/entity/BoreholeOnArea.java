@@ -1,6 +1,7 @@
 package vsu.shaforostov.second.entity;
 
-
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,22 +11,20 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@IdClass(BoreholeOnAreaId.class)
 @Table(name = "borehole_on_area")
 public class BoreholeOnArea {
 
-    public BoreholeOnArea(Area area, Borehole borehole) {
-        this.area = area;
-        this.borehole = borehole;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "area_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Area area;
 
-    @OneToOne
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "borehole_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Borehole borehole;
 
 }

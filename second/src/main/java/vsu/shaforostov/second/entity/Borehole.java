@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok. *;
 
 import java.awt.*;
+import java.util.Set;
 
 
 @Getter
@@ -30,5 +31,9 @@ public class Borehole {
 
     @Column()
     private Point location;
+
+
+    @OneToMany(mappedBy = "borehole")
+    Set<BoreholeOnArea> boreholeOnAreas;
 
 }

@@ -9,11 +9,9 @@ import vsu.shaforostov.second.entity.Borehole;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class BoreholeOnAreaDTO {
+public class BoreholeOnAreaReadDTO {
 
-    private Integer id;
+    private AreaDTO area;
 
-    private Area area;
-
-    private Borehole borehole;
+    private BoreholeDTO borehole;
 }

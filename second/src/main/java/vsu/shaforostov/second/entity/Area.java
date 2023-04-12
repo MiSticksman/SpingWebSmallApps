@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.awt.*;
+import java.util.Set;
 
 
 @Getter
@@ -26,6 +27,9 @@ public class Area {
     private String name;
     @Column()
     private Point location;
+
+    @OneToMany(mappedBy = "area")
+    Set<BoreholeOnArea> boreholesOnArea;
 
 }
 
