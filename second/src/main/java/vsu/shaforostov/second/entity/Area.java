@@ -24,7 +24,7 @@ public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer  id;
-    private String name;
+    private String name; // unique
     @Column()
     private Point location;
 

@@ -5,11 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import vsu.shaforostov.second.dto.BoreholeOnAreaCreateDTO;
 import vsu.shaforostov.second.dto.BoreholeOnAreaReadDTO;
+import vsu.shaforostov.second.dto.UniversalDto;
 import vsu.shaforostov.second.entity.BoreholeOnAreaId;
 import vsu.shaforostov.second.service.BoreholeOnAreaService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/boreholesOnArea")
 @RequiredArgsConstructor
@@ -29,9 +31,15 @@ public class BoreholeOnAreaController {
         return boreholeOnAreaService.findById(areaId, boreholeId);
     }
 
+//    @PostMapping(value="save")
+//    public void saveBorehole(@RequestBody BoreholeOnAreaCreateDTO boreholeOnArea) {
+//        boreholeOnAreaService.save(boreholeOnArea);
+//    }
+
     @PostMapping(value="save")
-    public void saveBorehole(@RequestBody BoreholeOnAreaCreateDTO boreholeOnArea) {
-        boreholeOnAreaService.save(boreholeOnArea);
+    public void saveBorehole(@RequestBody UniversalDto universalDto) {
+        boreholeOnAreaService.insert(universalDto);
     }
+
 
 }

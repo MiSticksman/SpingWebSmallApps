@@ -47,7 +47,7 @@ public class BoreholeService {
 
     public void save(BoreholeDTO boreholeDTO) {
         Borehole borehole = new Borehole(boreholeDTO.getNumber(), boreholeDTO.getType(), boreholeDTO.getLocation());
-        boreholeRepository.save(borehole);
+        int id = boreholeRepository.insert(borehole);
     }
 
 }

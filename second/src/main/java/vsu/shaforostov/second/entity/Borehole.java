@@ -25,7 +25,7 @@ public class Borehole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private int number;
+    private int number; // unique
 
     private String type;
 

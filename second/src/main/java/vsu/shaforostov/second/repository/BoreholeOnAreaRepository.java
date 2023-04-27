@@ -11,4 +11,5 @@ import java.util.Optional;
 
 public interface BoreholeOnAreaRepository extends JpaRepository<BoreholeOnArea, BoreholeOnAreaId> {
 
+
 }

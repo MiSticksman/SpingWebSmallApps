@@ -44,7 +44,8 @@ public class AreaService {
 
     public void save(AreaDTO areaDTO) {
         Area area = new Area(areaDTO.getName(), areaDTO.getLocation());
-        areaRepository.save(area);
+        int id = areaRepository.insert(area);
+        System.out.println(id);
     }
 
     public List<Borehole> findBoreholesNearArea(Integer id, double radius) {

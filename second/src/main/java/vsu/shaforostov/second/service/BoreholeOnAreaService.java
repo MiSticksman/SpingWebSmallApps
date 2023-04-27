@@ -5,15 +5,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import vsu.shaforostov.second.dto.AreaDTO;
-import vsu.shaforostov.second.dto.BoreholeDTO;
-import vsu.shaforostov.second.dto.BoreholeOnAreaCreateDTO;
-import vsu.shaforostov.second.dto.BoreholeOnAreaReadDTO;
+import vsu.shaforostov.second.dto.*;
 import vsu.shaforostov.second.entity.Area;
 import vsu.shaforostov.second.entity.Borehole;
 import vsu.shaforostov.second.entity.BoreholeOnArea;
 import vsu.shaforostov.second.entity.BoreholeOnAreaId;
+import vsu.shaforostov.second.mapper.BoreholeOnAreaMapper;
+import vsu.shaforostov.second.repository.AreaRepository;
 import vsu.shaforostov.second.repository.BoreholeOnAreaRepository;
+import vsu.shaforostov.second.repository.BoreholeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +25,19 @@ public class BoreholeOnAreaService {
 
     private final BoreholeOnAreaRepository boreholeOnAreaRepository;
 
+    private final BoreholeOnAreaMapper boreholeOnAreaMapper;
+
 //    private final AreaService areaService;
 //
 //    private final BoreholeService boreholeService;
+
+    private final AreaRepository areaRepository;
+
+    private final BoreholeRepository boreholeRepository;
+
+    private final AreaService areaService;
+
+    private final BoreholeService boreholeService;
 
 
     @PersistenceContext
@@ -74,4 +84,17 @@ public class BoreholeOnAreaService {
         boreholeOnAreaRepository.save(boreholeOnArea);
     }
 
+    public void insert(UniversalDto universalDto) {
+        Area area = new Area(universalDto.getAreaName(), universalDto.getAreaLocation());
+        int areaId = areaRepository.insert(area);
+        Borehole borehole = new Borehole(universalDto.getBoreholeNumber(),
+                universalDto.getBoreholeType(), universalDto.getBoreholeLocation());
+        int boreholeId = boreholeRepository.insert(borehole);
+        BoreholeOnArea boreholeOnArea = new BoreholeOnArea();
+        boreholeOnArea.setArea(areaRepository.findById(areaId).get());
+        boreholeOnArea.setBorehole(boreholeRepository.findById(boreholeId).get());
+        boreholeOnAreaRepository.save(boreholeOnArea);
+    }
+
 }
+
