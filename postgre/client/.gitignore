@@ -1,0 +1,23 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# dotenv
+.env
+
+# virtualenv
+venv/
+ENV/
+
+
+# IntelliJ
+out/
+
+# idea folder, uncomment if you don't need it
+.idea
+
+### VS Code ###
+.vscode/
